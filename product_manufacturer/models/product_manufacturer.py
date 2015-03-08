@@ -18,13 +18,15 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import fields, osv
 
 
-class ProductTemplate(models.Model):
+class ProductTemplate(osv.Model):
     _inherit = 'product.template'
 
-    manufacturer = fields.Many2one('res.partner', 'Manufacturer')
-    manufacturer_pname = fields.Char('Manufacturer Product Name')
-    manufacturer_pref = fields.Char('Manufacturer Product Code')
-    manufacturer_purl = fields.Char('Manufacturer Product URL')
+    _columns = {
+        'manufacturer': fields.many2one('res.partner', 'Manufacturer'),
+        'manufacturer_pname': fields.char('Manufacturer Product Name'),
+        'manufacturer_pref': fields.char('Manufacturer Product Code'),
+        'manufacturer_purl': fields.char('Manufacturer Product URL'),
+    }
